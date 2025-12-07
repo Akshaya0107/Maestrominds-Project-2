@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MAESTROMINDS QUOTATION</title>
+
+<style>
+/* ----- your entire CSS copied exactly (unchanged) ----- */
+
+    body {
+        font-family: "Times New Roman", Times, serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+    }
+    .page {
+    width: 850px;
+    margin: auto;
+    background: #fff;
+    border: 1px solid #000 !important;
+    padding: 15px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 5px;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 6px;
+        font-size: 13px;
+        vertical-align: top;
+    }
+    .header-table td {
+        border: none;
+        text-align: center;
+    }
+    .header-logo {
+        width: 120px;
+        text-align: left;
+    }
+    input, select, textarea {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 13px;
+        padding: 3px;
+    }
+    .center { text-align: center; }
+    .bold { font-weight: bold; }
+
+    button {
+        background: #0077cc;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+    .delete-btn {
+        background: #cc0000;
+        color: #fff;
+        border: none;
+        padding: 4px 8px;
+        cursor: pointer;
+    }
+    .delete-btn:hover { background: #990000; }
+
+    .qt-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .qt-label {
+        width: 140px; 
+        display: inline-block;
+        font-weight: 600;
+    }
+
+    .qt-row select,
+    .qt-row input {
+        width: 180px;
+    }
+
+    #company_address {
+        width: 300px;
+        resize: none;
+    }
+    
+    .header-table {
+    width: 100%;
+    border-collapse: collapse;
+    position: relative;
+}
+
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: max-content;
+}
+
+        /* Signature preview box */
+.signature-preview {
+    width: 120px;
+    height: 60px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #fff;
+}
+
+.signature-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Modal Popup */
+.signature-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.signature-modal-img {
+    max-width: 80%;
+    max-height: 80%;
+    border: 5px solid #fff;
+}
+
+
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+    /* =============================
+       PRINT FIX (HEADER REPEATS)
+       ============================= */
+    @media print {
+
+    /* Hide Add Row and Print buttons */
+    button,
+    .delete-btn {
+        display: none !important;
+    }
+
+    /* REMOVE INPUT BORDERS */
+    input, textarea, select {
+        border: none !important;
+        background: transparent !important;
+        outline: none !important;
+    }
+
+    /* REMOVE BORDERS ONLY FROM HEADER AREA */
+    .header-table,
+    .header-table td,
+    .header-table th {
+        border: none !important;
+    }
+
+    /* KEEP ALL OTHER TABLE BORDERS */
+    table:not(.header-table),
+    table:not(.header-table) th,
+    table:not(.header-table) td {
+        border: 1px solid #000 !important;
+        border-collapse: collapse !important;
+    }
+
+    /* CENTER THE HEADER BLOCK PROPERLY */
+    .header-center {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    /* Prevent row splitting */
+    tr {
+        page-break-inside: avoid !important;
+    }
+
+    /* Make header repeat on every page */
+    .header-table {
+        display: table-header-group !important;
+    }
+
+    .page {
+        page-break-after: always;
+        border: 1px solid #000 !important;
+    }
+     .header-table {
+        margin-bottom: 20px !important;
+    }
+    #signatureUpload,
+    #viewSignature,
+    #signaturemodal,
+    #removeSignature {
+        display: none !important;
+    }
+
+        /* Hide percentage inputs while printing */
+    .cgstPercent,
+    .sgstPercent,
+    .igstPercent {
+        display: none !important;
+    }
+
+    /* Show calculated amounts cleanly during print */
+    .cgst,
+    .sgst,
+    .igst {
+        display: block !important;
+    }
+
+    /* Do NOT repeat tfoot on each page */
+    tfoot {
+        display: table-row-group !important;
+    }
+
+    /* Prevent the TOTAL row from splitting or duplicating */
+    tfoot tr {
+        page-break-inside: avoid !important;
+        page-break-after: avoid !important;
+    }
+
+    /* Prevent the last data row from being duplicated */
+    #rows tr:last-child {
+        page-break-after: avoid !important;
+    }
+     /* 📌 Hide signature preview border & padding when printing */
+    .signature-preview {
+        border: none !important;
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    #signaturePreview {
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        max-width: 160px !important; /* Adjust size for PDF */
+        max-height: auto !important;
+    }
+     select {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        background-image: none !important;
+    }
+    select::-ms-expand {
+        display: none !important;
+    }
+
+    /* Remove number input arrows in print */
+    input[type="number"],
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        margin: 0 !important;
+        display: none !important;
+    }
+
+    /* Remove date picker icon in print */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none !important;
+        opacity: 0 !important;
+    }
+     body {
+        background: #fff !important;
+        overflow: visible !important;
+    }
+
+    /* Let tables break naturally */
+    table {
+        page-break-inside: auto !important;
+    }
+
+    tr {
+        page-break-inside: avoid !important;
+        page-break-after: auto !important;
+    }
+
+    td, th {
+        page-break-inside: avoid !important;
+    }
+
+    /* Allow long tables to continue on next page */
+    #rows {
+        page-break-inside: auto !important;
+    }
+
+    #rows tr {
+        page-break-inside: avoid !important;
+    }
+
+    /* THIS FIXES THE BIG WHITE GAP */
+    .page {
+        page-break-after: auto !important;
+        page-break-inside: auto !important;
+        margin: 0 auto !important;
+        padding: 10px !important;
+        min-height: auto !important;
+    }
+
+    /* Fix border breaking at page bottom */
+    .page::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    /* CLOSE BORDERS AT PAGE END */
+    table {
+        border-bottom: 1px solid #000 !important;
+    }
+
+    /* Only break when required */
+    .force-break {
+        page-break-before: always !important;
+        break-before: page !important;
+    }
+     .page {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <table class="header-table" style="position: relative;">
+        <tr>
+            <td class="header-logo">
+                <!-- Flask STATIC logo -->
+                <img src="{{ url_for('static', filename='logo.jpg') }}" width="150">
+            </td>
+
+            <td></td>
+
+            <div class="header-center"><br>
+                <div style="font-size:14px;font-weight:bold;">QUOTATION</div><br>
+                <div style="font-size:24px;font-weight:bolder;">MAESTROMINDS</div><br>
+                <div style="font-size: small;">No 3/500c, Lakshmana Perumal Avenue, Kottivakkam, Chennai - 600041</div><br>
+                <div style="font-weight:bold;">GSTIN : 33BFBPJ1022A1ZL</div>
+            </div>
+        </tr>
+    </table>
+
+    <!-- All your HTML below is EXACTLY the same -->
+    <!-- DETAILS -->
+    
+    <table>
+    <tr>
+        <td style="width:65%;">
+            Tax is Payable on Reverse Charges:
+            <select id="reverse_charge" style="width:120px; display:inline-block; margin-left:5px;">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+
+        <td style="width:35%;">
+            Date of Supply:
+            <input type="date" id="supply_date" style="width:160px; display:inline-block; margin-left:5px;">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Quotation No:
+            <input name="quotation_no" value="01"
+                   style="width:150px; display:inline-block; margin-left:5px;">
+        </td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>
+            Quotation Date:
+            <input type="date" name="quotation_date"
+                   style="width:160px; display:inline-block; margin-left:5px;">
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+    <!-- QUOTED TO -->
+  <!-- QUOTED TO SECTION -->
+<table>
+    <tr><td class="center bold">Quoted To</td></tr>
+    <tr>
+        <td>
+
+            <div class="qt-row">
+    <span class="qt-label">Recipient Name:</span>
+    <input type="text" id="company_name" placeholder="Enter Recipient Name">
+</div>
+
+<div class="qt-row">
+    <span class="qt-label">GSTIN:</span>
+    <input type="text" id="company_gstin" placeholder="Enter GSTIN">
+</div>
+
+<div class="qt-row">
+    <span class="qt-label">Address:</span>
+    <textarea id="company_address" rows="2" placeholder="Enter Address"></textarea>
+</div>
+
+
+<div class="qt-row" id="stateDiv" style="display:none;">
+    <span class="qt-label">State:</span>
+    <select id="state" onchange="calculateTotals()"></select>
+</div>
+
+<div class="qt-row">
+    <span class="qt-label">Country:</span>
+    <select id="country" onchange="updateGSTColumns()">
+        <option value="">Select Country</option>
+        <!-- All 195 countries -->
+                    <option>Afghanistan</option>
+                    <option>Albania</option>
+                    <option>Algeria</option>
+                    <option>Andorra</option>
+                    <option>Angola</option>
+                    <option>Antigua and Barbuda</option>
+                    <option>Argentina</option>
+                    <option>Armenia</option>
+                    <option>Australia</option>
+                    <option>Austria</option>
+                    <option>Azerbaijan</option>
+                    <option>Bahamas</option>
+                    <option>Bahrain</option>
+                    <option>Bangladesh</option>
+                    <option>Barbados</option>
+                    <option>Belarus</option>
+                    <option>Belgium</option>
+                    <option>Belize</option>
+                    <option>Benin</option>
+                    <option>Bhutan</option>
+                    <option>Bolivia</option>
+                    <option>Bosnia and Herzegovina</option>
+                    <option>Botswana</option>
+                    <option>Brazil</option>
+                    <option>Brunei</option>
+                    <option>Bulgaria</option>
+                    <option>Burkina Faso</option>
+                    <option>Burundi</option>
+                    <option>Cabo Verde</option>
+                    <option>Cambodia</option>
+                    <option>Cameroon</option>
+                    <option>Canada</option>
+                    <option>Central African Republic</option>
+                    <option>Chad</option>
+                    <option>Chile</option>
+                    <option>China</option>
+                    <option>Colombia</option>
+                    <option>Comoros</option>
+                    <option>Republic of the Congo</option>
+                    <option>Democratic Republic of the Congo</option>
+                    <option>Costa Rica</option>
+                    <option>Croatia</option>
+                    <option>Cuba</option>
+                    <option>Cyprus</option>
+                    <option>Czech Republic</option>
+                    <option>Denmark</option>
+                    <option>Djibouti</option>
+                    <option>Dominica</option>
+                    <option>Dominican Republic</option>
+                    <option>Ecuador</option>
+                    <option>Egypt</option>
+                    <option>El Salvador</option>
+                    <option>Equatorial Guinea</option>
+                    <option>Eritrea</option>
+                    <option>Estonia</option>
+                    <option>Eswatini</option>
+                    <option>Ethiopia</option>
+                    <option>Fiji</option>
+                    <option>Finland</option>
+                    <option>France</option>
+                    <option>Gabon</option>
+                    <option>The Gambia</option>
+                    <option>Georgia</option>
+                    <option>Germany</option>
+                    <option>Ghana</option>
+                    <option>Greece</option>
+                    <option>Grenada</option>
+                    <option>Guatemala</option>
+                    <option>Guinea</option>
+                    <option>Guinea-Bissau</option>
+                    <option>Guyana</option>
+                    <option>Haiti</option>
+                    <option>Honduras</option>
+                    <option>Hungary</option>
+                    <option>Iceland</option>
+                    <option>India</option>
+                    <option>Indonesia</option>
+                    <option>Iran</option>
+                    <option>Iraq</option>
+                    <option>Ireland</option>
+                    <option>Israel</option>
+                    <option>Italy</option>
+                    <option>Jamaica</option>
+                    <option>Japan</option>
+                    <option>Jordan</option>
+                    <option>Kazakhstan</option>
+                    <option>Kenya</option>
+                    <option>Kiribati</option>
+                    <option>Kuwait</option>
+                    <option>Kyrgyzstan</option>
+                    <option>Laos</option>
+                    <option>Latvia</option>
+                    <option>Lebanon</option>
+                    <option>Lesotho</option>
+                    <option>Liberia</option>
+                    <option>Libya</option>
+                    <option>Liechtenstein</option>
+                    <option>Lithuania</option>
+                    <option>Luxembourg</option>
+                    <option>Madagascar</option>
+                    <option>Malawi</option>
+                    <option>Malaysia</option>
+                    <option>Maldives</option>
+                    <option>Mali</option>
+                    <option>Malta</option>
+                    <option>Marshall Islands</option>
+                    <option>Mauritania</option>
+                    <option>Mauritius</option>
+                    <option>Mexico</option>
+                    <option>Micronesia</option>
+                    <option>Moldova</option>
+                    <option>Monaco</option>
+                    <option>Mongolia</option>
+                    <option>Montenegro</option>
+                    <option>Morocco</option>
+                    <option>Mozambique</option>
+                    <option>Myanmar</option>
+                    <option>Namibia</option>
+                    <option>Nauru</option>
+                    <option>Nepal</option>
+                    <option>Netherlands</option>
+                    <option>New Zealand</option>
+                    <option>Nicaragua</option>
+                    <option>Niger</option>
+                    <option>Nigeria</option>
+                    <option>North Korea</option>
+                    <option>North Macedonia</option>
+                    <option>Norway</option>
+                    <option>Oman</option>
+                    <option>Pakistan</option>
+                    <option>Palau</option>
+                    <option>Panama</option>
+                    <option>Papua New Guinea</option>
+                    <option>Paraguay</option>
+                    <option>Peru</option>
+                    <option>Philippines</option>
+                    <option>Poland</option>
+                    <option>Portugal</option>
+                    <option>Qatar</option>
+                    <option>Romania</option>
+                    <option>Russia</option>
+                    <option>Rwanda</option>
+                    <option>Saint Kitts and Nevis</option>
+                    <option>Saint Lucia</option>
+                    <option>Saint Vincent and the Grenadines</option>
+                    <option>Samoa</option>
+                    <option>San Marino</option>
+                    <option>Sao Tome and Principe</option>
+                    <option>Saudi Arabia</option>
+                    <option>Senegal</option>
+                    <option>Serbia</option>
+                    <option>Seychelles</option>
+                    <option>Sierra Leone</option>
+                    <option>Singapore</option>
+                    <option>Slovakia</option>
+                    <option>Slovenia</option>
+                    <option>Solomon Islands</option>
+                    <option>Somalia</option>
+                    <option>South Africa</option>
+                    <option>South Korea</option>
+                    <option>South Sudan</option>
+                    <option>Spain</option>
+                    <option>Sri Lanka</option>
+                    <option>Sudan</option>
+                    <option>Suriname</option>
+                    <option>Sweden</option>
+                    <option>Switzerland</option>
+                    <option>Syria</option>
+                    <option>Taiwan</option>
+                    <option>Tajikistan</option>
+                    <option>Tanzania</option>
+                    <option>Thailand</option>
+                    <option>Timor-Leste</option>
+                    <option>Togo</option>
+                    <option>Tonga</option>
+                    <option>Trinidad and Tobago</option>
+                    <option>Tunisia</option>
+                    <option>Turkey</option>
+                    <option>Turkmenistan</option>
+                    <option>Tuvalu</option>
+                    <option>Uganda</option>
+                    <option>Ukraine</option>
+                    <option>United Arab Emirates</option>
+                    <option>United Kingdom</option>
+                    <option>United States</option>
+                    <option>Uruguay</option>
+                    <option>Uzbekistan</option>
+                    <option>Vanuatu</option>
+                    <option>Vatican City</option>
+                    <option>Venezuela</option>
+                    <option>Vietnam</option>
+                    <option>Yemen</option>
+                    <option>Zambia</option>
+                    <option>Zimbabwe</option>
+                    <option>Other</option>
+    </select>
+</div>
+
+
+            <div class="qt-row">
+                <span class="qt-label">Currency:</span>
+                <select id="currency" onchange="updateCurrencySymbol()">
+                    <option value="₹">₹ (INR)</option>
+                    <option value="$">$ (USD)</option>
+                    <option value="£">£ (GBP)</option>
+                    <option value="€">€ (EUR)</option>
+                    <option value="A$">A$ (AUD)</option>
+                    <option value="C$">C$ (CAD)</option>
+                    <option value="¥">¥ (JPY/CNY)</option>
+                    <option value="CHF">CHF (Swiss Franc)</option>
+                    <option value="kr">kr (SEK/NOK/DKK)</option>
+                    <option value="AED">AED (Dirham)</option>
+                    <option value="SAR">SAR (Riyal)</option>
+                    <option value="R">R (ZAR)</option>
+                    <option value="R$">R$ (BRL)</option>
+                    <option value="QAR">QAR (Qatari Riyal)</option>
+                    <option value="KWD">KWD (Kuwaiti Dinar)</option>
+                </select>
+            </div>
+
+        </td>
+    </tr>
+</table>
+
+   
+    <div style="display: flex; align-items: flex-start;">
+
+  <!-- Your Table -->
+  <table id="itemTable" style="border-collapse: collapse; border: 1px solid black;">
+    <thead>
+      <tr class="center bold">
+        <th style="width: 40px;">Sl</th>
+        <th style="width: 280px;">Description of Service</th>
+        <th style="width: 90px;">Quantity</th>
+        <th style="width: 100px;">Rate (<span class="currSymbol">₹</span>)</th>
+        <th style="width: 110px;">Total (<span class="currSymbol">₹</span>)</th>
+        <th style="width: 80px;">CGST</th>
+        <th style="width: 80px;">SGST</th>
+        <th style="width: 80px;">IGST</th>
+        <th style="width: 130px;">Grand Total (<span class="currSymbol">₹</span>)</th>
+      </tr>
+    </thead>
+    <tbody id="rows">
+      <!-- Rows will be added here dynamically -->
+    </tbody>
+    <tfoot>
+      <tr class="bold center">
+        <td colspan="4">TOTAL</td>
+        <td id="totalAmount">0.00</td>
+        <td id="totalCGST">0.00</td>
+        <td id="totalSGST">0.00</td>
+        <td id="totalIGST">0.00</td>
+        <td id="grandTotal">0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  
+
+</div>
+
+<!-- Add Row and Delete Buttons -->
+<button onclick="addRow()" style="margin-top: 10px; margin-right: 5px;">Add Row</button>
+<button onclick="activateDeleteMode()" style="margin-top: 10px;">Delete</button>
+
+
+
+
+    <!-- SUMMARY -->
+    <table>
+        <tr>
+            <td style="width:70%;">
+                Value in Words:<br><span id="amountWords"></span>
+            </td>
+            <td>
+                <b>Taxable Amount:</b> <span class="currSymbol">₹</span><span id="taxableValue">0.00</span><br>
+                <b>CGST:</b> <span class="currSymbol">₹</span><span id="cgstValue">0.00</span><br>
+                <b>SGST:</b> <span class="currSymbol">₹</span><span id="sgstValue">0.00</span><br>
+                <b>IGST:</b> <span class="currSymbol">₹</span><span id="igstValue">0.00</span><br>
+                <hr>
+                <b>Total:</b> <span class="currSymbol">₹</span><span id="finalTotal">0.00</span>
+            </td>
+        </tr>
+    </table>
+
+  <table>
+    <tr>
+        <!-- LEFT SIDE: TERMS (50%) -->
+    <td style="width:50%; vertical-align: top;">
+      <b>Terms & Conditions:</b><br>
+      <textarea rows="6" style="width:100%;"></textarea>
+    </td>
+
+    <!-- RIGHT SIDE: SIGNATURE (50%) -->
+    <td style="width:50%; vertical-align: top;">
+
+      <!-- FLEX WRAPPER: Left text + Right upload -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px;">
+
+        <!-- LEFT SIDE TEXT -->
+        <div style="width:50%; text-align:left;">
+          Signature of Authorised Signatory<br>
+          <b>Name:</b> Jaya<br>
+          <b>Designation:</b> Proprietor
+        </div>
+
+        <!-- RIGHT SIDE: UPLOAD + PREVIEW -->
+        <div style="width:50%; text-align:center;">
+          <input type="file" id="signatureUpload" accept="image/*" style="margin-bottom:8px;"><br>
+
+          <div class="signature-preview">
+              <img id="signaturePreview" alt="">
+          </div>
+
+          <div style="margin-top:8px; display:flex; gap:10px; justify-content:center;">
+              <button id="viewSignature" type="button" style="padding:6px 10px; font-size:13px;">View</button>
+              <button id="removeSignature" type="button" style="padding:6px 10px; font-size:13px;">Remove</button>
+          </div>
+        </div>
+
+      </div>
+
+    </td>
+    </tr>
+</table>
+<div id="signatureModal" class="signature-modal">
+        <span id="closeSignatureModal" class="close-btn">&times;</span>
+        <img id="signatureModalImg" class="signature-modal-img">
+    </div>
+
+    <button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<script>
+const indianStates =["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Delhi","Jammu & Kashmir","Puducherry","Ladakh"];
+let count = 0, currSymbol = "₹", isIndia = true;
+
+
+
+function updateGSTColumns() {
+    const country = document.getElementById("country").value;
+    const stateDiv = document.getElementById("stateDiv");
+    const stateSel = document.getElementById("state");
+    stateSel.innerHTML = "";
+
+    if (country === "India") {
+        isIndia = true;
+        stateDiv.style.display = "block";
+        indianStates.forEach(st => {
+            const opt = document.createElement("option");
+            opt.text = st;
+            stateSel.appendChild(opt);
+        });
+    } else {
+        isIndia = false;
+        stateDiv.style.display = "none";
+    }
+    calculateTotals();
+}
+
+function updateCurrencySymbol() {
+    currSymbol = document.getElementById("currency").value;
+    document.querySelectorAll(".currSymbol").forEach(e => e.textContent = currSymbol);
+    calculateTotals();
+}
+
+function toggleOtherService(selectElem) {
+    const otherInput = selectElem.parentElement.querySelector(".otherDesc");
+    if (selectElem.value === "Other") {
+        selectElem.style.display = "none";
+        otherInput.style.display = "block";
+        otherInput.focus();
+    } else {
+        otherInput.style.display = "none";
+    }
+}
+
+function addRow() {
+    count++;
+
+    const rowHTML = `
+    <tr>
+        <td class="slno">${count}</td>
+
+        <td>
+            <select class="desc" onchange="toggleOtherService(this)">
+                <option value="">Select Service</option>
+                <option>Frontend Development</option>
+                <option>Backend Development</option>
+                <option>Fullstack Development</option>
+                <option>UI/UX Design</option>
+                <option>Mobile App Development</option>
+                <option>API Integration</option>
+                <option>Website Maintenance</option>
+                <option>Cloud Deployment</option>
+                <option value="Other">Other (Specify Below)</option>
+            </select>
+            <input type="text" class="otherDesc" style="display:none; margin-top:3px;" oninput="calculateTotals()">
+        </td>
+
+        <td><input type="number" class="qty" step="0.01" oninput="calculateTotals()"></td>
+        <td><input type="number" class="rate" step="0.01" oninput="calculateTotals()"></td>
+
+        <td class="total">0.00</td>
+
+        <td>
+            <input type="number" class="cgstPercent"  placeholder="%" step="0.01" oninput="calculateTotals()">
+            <div class="cgst">0.00</div>
+        </td>
+        <td>
+            <input type="number" class="sgstPercent"  placeholder="%" step="0.01" oninput="calculateTotals()">
+            <div class="sgst">0.00</div>
+        </td>
+        <td>
+            <input type="number" class="igstPercent"  placeholder="%" step="0.01" oninput="calculateTotals()">
+            <div class="igst">0.00</div>
+        </td>
+
+        <td class="grand">0.00</td>
+
+        <!-- DELETE COLUMN ADDED HERE -->
+    <td class="deleteCell center" style="display:none;">
+        <input type="radio" name="rowDelete">
+    </td>
+    </tr>
+    `;
+
+    document.getElementById("rows").insertAdjacentHTML("beforeend", rowHTML);
+
+    // Create right-side delete selector
+    const delSelectHTML = `
+        <div class="delSelect" style="margin-bottom:6px; display:none;">
+            <input type="radio" name="rowDelete">
+        </div>
+    `;
+    document.getElementById("deleteColumn").insertAdjacentHTML("beforeend", delSelectHTML);
+}
+
+
+function deleteRow(btn) {
+    btn.closest("tr").remove();
+    updateSerials();
+    calculateTotals();
+}
+
+function updateSerials() {
+    document.querySelectorAll(".slno").forEach((el, i) => el.textContent = i + 1);
+}
+
+function format(num) {
+    return num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function calculateTotals() {
+    let totalAmt = 0, cgstAmt = 0, sgstAmt = 0, igstAmt = 0, grandAmt = 0;
+
+    document.querySelectorAll("#rows tr").forEach(row => {
+        const qty = parseFloat(row.querySelector(".qty").value) || 0;
+        const rate = parseFloat(row.querySelector(".rate").value) || 0;
+        const total = qty * rate;
+
+        // Read percentages typed by user
+        const cgstP = parseFloat(row.querySelector(".cgstPercent").value) || 0;
+        const sgstP = parseFloat(row.querySelector(".sgstPercent").value) || 0;
+        const igstP = parseFloat(row.querySelector(".igstPercent").value) || 0;
+
+        // Calculate the tax amounts
+        const cgst = (total * cgstP) / 100;
+        const sgst = (total * sgstP) / 100;
+        const igst = (total * igstP) / 100;
+
+        const grand = total + cgst + sgst + igst;
+
+        // Update table cells
+        row.querySelector(".total").textContent = format(total);
+        row.querySelector(".cgst").textContent = format(cgst);
+        row.querySelector(".sgst").textContent = format(sgst);
+        row.querySelector(".igst").textContent = format(igst);
+        row.querySelector(".grand").textContent = format(grand);
+
+        totalAmt += total;
+        cgstAmt += cgst;
+        sgstAmt += sgst;
+        igstAmt += igst;
+        grandAmt += grand;
+    });
+
+    document.getElementById("totalAmount").textContent = format(totalAmt);
+    document.getElementById("totalCGST").textContent = format(cgstAmt);
+    document.getElementById("totalSGST").textContent = format(sgstAmt);
+    document.getElementById("totalIGST").textContent = format(igstAmt);
+    document.getElementById("taxableValue").textContent = format(totalAmt);
+    document.getElementById("cgstValue").textContent = format(cgstAmt);
+    document.getElementById("sgstValue").textContent = format(sgstAmt);
+    document.getElementById("igstValue").textContent = format(igstAmt);
+    document.getElementById("finalTotal").textContent = format(grandAmt);
+    document.getElementById("grandTotal").textContent = format(grandAmt);
+    const currencyWords = getCurrencyInWords(currSymbol);
+const words = numberToWords(Math.round(grandAmt));
+document.getElementById("amountWords").textContent =
+    words + " " + currencyWords + " Only";
+
+   
+}
+
+
+function numberToWords(num) {
+    const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+    const b=['','', 'Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+    if((num=num.toString()).length>9)return'Overflow';
+    const n=('000000000'+num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if(!n)return'';let str='';
+    str+=(n[1]!=0)?(a[Number(n[1])]||b[n[1][0]]+' '+a[n[1][1]])+' Crore ':'';
+    str+=(n[2]!=0)?(a[Number(n[2])]||b[n[2][0]]+' '+a[n[2][1]])+' Lakh ':'';
+    str+=(n[3]!=0)?(a[Number(n[3])]||b[n[3][0]]+' '+a[n[3][1]])+' Thousand ':'';
+    str+=(n[4]!=0)?(a[Number(n[4])]||b[n[4][0]]+' '+a[n[4][1]])+' Hundred ':'';
+    str+=(n[5]!=0)?((str!='')?'and ':'')+(a[Number(n[5])]||b[n[5][0]]+' '+a[n[5][1]])+' ':'';
+    return str.trim();
+}
+
+function getCurrencyInWords(symbol) {
+    switch(symbol) {
+        case "₹": return "Rupees";
+        case "$": return "US Dollars";
+        case "£": return "Pounds";
+        case "€": return "Euros";
+        case "A$": return "Australian Dollars";
+        case "C$": return "Canadian Dollars";
+        case "¥": return "Yen / Yuan";
+        case "CHF": return "Swiss Francs";
+        case "kr": return "Kroner";
+        case "AED": return "Dirham";
+        case "SAR": return "Saudi Riyal";
+        case "R": return "South African Rand";
+        case "R$": return "Brazilian Real";
+        case "QAR": return "Qatari Riyal";
+        case "KWD": return "Kuwaiti Dinar";
+        default: return "";
+    }
+}
+
+
+
+addRow();
+const upload = document.getElementById("signatureUpload");
+const img = document.getElementById("signaturePreview");
+const removeBtn = document.getElementById("removeSignature");
+const viewBtn = document.getElementById("viewSignature");
+
+let fileURL = "";
+
+// Preview uploaded signature
+upload.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+        fileURL = URL.createObjectURL(file);
+        img.src = fileURL;
+    }
+});
+
+// Open signature in custom popup viewer
+viewBtn.addEventListener("click", function () {
+    if (!fileURL) {
+        alert("No signature uploaded!");
+        return;
+    }
+    document.getElementById("signatureModalImg").src = fileURL;
+    document.getElementById("signatureModal").style.display = "flex";
+});
+
+// Remove signature
+removeBtn.addEventListener("click", function () {
+    img.src = "";
+    upload.value = "";
+    fileURL = "";
+});
+
+// Close modal
+document.getElementById("closeSignatureModal").addEventListener("click", function () {
+    document.getElementById("signatureModal").style.display = "none";
+});
+
+function activateDeleteMode() {
+    // Show delete column
+    document.querySelectorAll(".deleteCell").forEach(cell => {
+        cell.style.display = "table-cell";
+    });
+
+    setTimeout(() => {
+        const selected = document.querySelector('input[name="rowDelete"]:checked');
+
+        if (!selected) {
+            alert("Select a row to delete.");
+            return;
+        }
+
+        const row = selected.closest("tr");
+        row.remove();
+
+        updateSerials();
+        calculateTotals();
+
+        // Hide delete column again
+        document.querySelectorAll(".deleteCell").forEach(cell => {
+            cell.style.display = "none";
+        });
+
+    }, 200);
+}
+
+</script>
+<div id="signatureModal"
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
+
+    <span id="closeSignatureModal"
+          style="position:absolute; top:20px; right:30px; color:#fff;
+                 font-size:30px; font-weight:bold; cursor:pointer;">
+        &times;
+    </span>
+
+    <img id="signatureModalImg"
+         style="max-width:90%; max-height:80%; border:3px solid #fff;">
+</div>
+</body>
+</html>
