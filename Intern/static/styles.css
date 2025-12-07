@@ -1,0 +1,168 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Times New Roman', Times, serif;
+    background: #e2ddcf;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f1eee6, #dad3c4);
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    width: 850px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+    transition: transform 0.3s ease-in-out;
+}
+
+.left-box {
+    width: 40%;
+    background: #353434;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.right-box {
+    width: 60%;
+    padding: 50px;
+}
+
+h2 {
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 12px;
+    background: #373737;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #222;
+}
+
+.error {
+    color: red;
+}
+.logo-box {
+    width: 120px;
+    height: 120px;
+    background: #eee;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Dashboard Background */
+/* Background */
+.dashboard-body {
+    margin: 0;
+    background: #e2ddcf;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Top Bar */
+.topbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #353434;
+    padding: 14px 25px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.back-btn {
+    font-size: 28px;
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.topbar-logo img {
+    width: 45px;
+    height: 45px;
+    margin-right: 15px;
+}
+
+.topbar-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Center Buttons Wrapper */
+.dashboard-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Buttons */
+.center-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.menu-btn {
+    background: #353434;
+    color: white;
+    padding: 14px;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 12px;
+    width: 250px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    color: #444;
+}

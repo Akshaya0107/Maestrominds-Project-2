@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <a href="{{ url_for('login') }}" class="back-btn">←</a>
+
+        <div class="topbar-logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo">
+        </div>
+
+        <h1 class="topbar-title">MAESTROMINDS ACCOUNTS PORTAL</h1>
+    </div>
+
+
+    <!-- CENTER WRAPPER (fixes alignment) -->
+    <div class="dashboard-center">
+
+        <!-- BUTTON COLUMN -->
+        <div class="center-buttons">
+
+            <!-- Quotation -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('quotation') }}'">
+                Quotation
+            </button>
+
+            <!-- Tax Invoice -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('tax_invoice') }}'">
+                Tax Invoice
+            </button>
+
+            <!-- Proforma Invoice -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('proforma_invoice') }}'">
+                Proforma Invoice
+            </button>
+
+            <!-- Credit Note -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('credit_note') }}'">
+                Credit Note
+            </button>
+
+            <!-- Debit Note -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('debit_note') }}'">
+                Debit Note
+            </button>
+
+            <!-- Receipt Voucher -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('receipt_voucher') }}'">
+                Receipt Voucher
+            </button>
+
+            <!-- Payment Voucher -->
+            <button class="menu-btn no-submenu"
+                    onclick="window.location.href='{{ url_for('payment_voucher') }}'">
+                Payment Voucher
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER OUTSIDE (correct position) -->
+    <footer class="footer">
+        © 2025 MAESTROMINDS — All Rights Reserved
+    </footer>
+
+
+    <!-- JS for collapsible menus (leave as is) -->
+    <script>
+        let collapsibles = document.querySelectorAll(".collapsible");
+
+        collapsibles.forEach(btn => {
+            btn.addEventListener("click", function () {
+                this.classList.toggle("active");
+
+                let submenu = this.nextElementSibling;
+                if (submenu.style.maxHeight) {
+                    submenu.style.maxHeight = null; // Close
+                } else {
+                    submenu.style.maxHeight = submenu.scrollHeight + "px"; // Open
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
