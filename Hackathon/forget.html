@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAESTROMINDS | Forgot Password</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f1eee6, #dad3c4);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.5;
+        animation: float 8s infinite ease-in-out alternate;
+    }
+
+    .shape:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        background: #3d3c39;
+        top: -50px;
+        left: -80px;
+        animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+        width: 400px;
+        height: 400px;
+        background: #b8b19e;
+        bottom: -80px;
+        right: -100px;
+        animation-delay: 2s;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px) translateX(0px); }
+        100% { transform: translateY(25px) translateX(25px); }
+    }
+
+    .forgot-container {
+        width: 520px;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 20px;
+        padding: 40px 45px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        z-index: 2;
+        animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+        color: #3d3c39;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    p {
+        color: #6b6864;
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .input-group label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: block;
+        font-size: 14px;
+        color: #3d3c39;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #b7b1a3;
+        border-radius: 10px;
+        font-size: 14px;
+        background: #faf8f3;
+        transition: 0.2s;
+    }
+
+    .input-group input:focus {
+        outline: none;
+        border-color: #3d3c39;
+        background: #fff;
+    }
+
+    .reset-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: #3d3c39;
+        color: white;
+        font-size: 15px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    .reset-btn:hover {
+        background: #5a5955;
+    }
+
+    .back-login {
+        margin-top: 18px;
+        font-size: 13px;
+    }
+
+    .back-login a {
+        text-decoration: none;
+        color: #3d3c39;
+        font-weight: 500;
+    }
+
+    .back-login a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="shape"></div>
+<div class="shape"></div>
+
+<div class="forgot-container">
+    <h2>Forgot Password?</h2>
+    <p>Enter your registered email address. We will send you a password reset link.</p>
+
+    <form id="forgotForm">
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter email" required>
+        </div>
+
+        <button class="reset-btn" type="submit">Send Reset Link</button>
+
+        <div class="back-login">
+            <p>Remember your password? <a href="login.html">Back to Login</a></p>
+        </div>
+    </form>
+</div>
+
+<script>
+document.getElementById("forgotForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+
+    if (!email.trim()) {
+        alert("Please enter your email.");
+        return;
+    }
+
+    alert("A password reset link has been sent to: " + email);
+
+    // Redirect back to login page
+    window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>
